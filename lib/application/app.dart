@@ -10,8 +10,19 @@ class CraftyBay extends StatelessWidget {
     return MaterialApp(
       home: const SplashScreen(),
       theme: ThemeData(
-        primarySwatch: MaterialColor(AppColors.primaryColor.value, AppColors().color),
-
+        primaryColor: AppColors.primarySwatch,
+        primarySwatch: AppColors.primarySwatch,
+        primaryTextTheme: const TextTheme(
+          titleMedium: TextStyle(
+            color: Colors.black,
+          ),
+        ),
+        progressIndicatorTheme: const ProgressIndicatorThemeData(
+          color: AppColors.primarySwatch
+        ),
+        appBarTheme: const AppBarTheme(
+          backgroundColor: AppColors.primarySwatch,
+        ),
       ),
     );
   }
