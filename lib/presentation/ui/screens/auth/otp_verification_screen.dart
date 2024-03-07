@@ -1,18 +1,16 @@
-import 'package:ecommerceapp/presentation/ui/screens/auth/otp_verification_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:get/get.dart';
 
 import '../../utility/image_assets.dart';
 
-class EmailVerificationScreen extends StatefulWidget {
-  const EmailVerificationScreen({super.key});
+class OTPVerificationScreen extends StatefulWidget {
+  const OTPVerificationScreen({super.key});
 
   @override
-  State<EmailVerificationScreen> createState() => _EmailVerificationScreenState();
+  State<OTPVerificationScreen> createState() => _OTPVerificationScreenState();
 }
 
-class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
+class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,26 +26,22 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
                     width: 100,
                   )),
               const SizedBox(height: 16,),
-              Text("Welcome Back", style: Theme.of(context).textTheme.titleLarge?.copyWith(
+              Text("Enter Your OTP Code", style: Theme.of(context).textTheme.titleLarge?.copyWith(
                 fontSize: 28,
               ),),
               const SizedBox(height: 5,),
-              Text("Please Enter Your Email Address", style: Theme.of(context).textTheme.titleMedium?.copyWith(
-               color: Colors.grey,
+              Text("A 4 digit code has been sent", style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                color: Colors.grey,
                 fontSize: 16,
               ),),
               const SizedBox(height: 22,),
-               TextFormField(
-                 decoration: const InputDecoration(
-                   hintText: "Email",
-                 ),
-               ),
+              TextFormField(),
               const SizedBox(height: 16,),
               SizedBox(
-                width: double.infinity,
+                  width: double.infinity,
                   child: ElevatedButton(
                       onPressed: (){
-                        Get.to(const OTPVerificationScreen());
+
                       }, child: const Text("Next")))
 
             ],
