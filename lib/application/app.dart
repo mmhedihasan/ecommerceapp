@@ -10,7 +10,7 @@ class CraftyBay extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       home: const SplashScreen(),
-      theme: ThemeData(
+        theme: ThemeData(
         primaryColor: AppColors.primarySwatch,
         primarySwatch: AppColors.primarySwatch,
         primaryTextTheme: const TextTheme(
@@ -24,6 +24,13 @@ class CraftyBay extends StatelessWidget {
         appBarTheme: const AppBarTheme(
           backgroundColor: AppColors.primarySwatch,
         ),
+          elevatedButtonTheme: ElevatedButtonThemeData(
+            style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all<Color>(AppColors.primarySwatch,), //button color
+              foregroundColor: MaterialStateProperty.all<Color>(Color(0xffffffff),), //text (and icon)
+            ),
+          ),
+
       ),
     );
   }
