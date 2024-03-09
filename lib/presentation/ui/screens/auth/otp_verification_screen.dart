@@ -1,6 +1,8 @@
+import 'package:ecommerceapp/presentation/ui/screens/auth/complete_profile_screen.dart';
 import 'package:ecommerceapp/presentation/ui/utility/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
 import '../../utility/image_assets.dart';
@@ -88,7 +90,9 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
                 SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Get.offAll(const CompleteProfileScreen());
+                    },
                     child: const Text("Next"),
                   ),
                 ),
