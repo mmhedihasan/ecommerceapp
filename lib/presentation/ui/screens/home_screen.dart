@@ -58,11 +58,11 @@ class CircularIconButton extends StatelessWidget {
       borderRadius: BorderRadius.circular(30),
       child: CircleAvatar(
         radius: 15,
-        backgroundColor: Colors.grey.shade300,
+        backgroundColor: Colors.grey.shade200,
         child: Icon(
           icon,
           color: Colors.grey,
-          size: 18,
+          size: 17,
         ),
       ),
     );
