@@ -94,6 +94,49 @@ class _HomeScreenState extends State<HomeScreen> {
                 height: 16,
               ),
               SectionHeader(title: 'Popular', onTap: () {  },),
+              Card(
+                shadowColor: AppColors.primarySwatch.withOpacity(0.1),
+                elevation: 4,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: SizedBox(
+                  width: 100,
+                  child: Column(
+                    children: [
+                        Container(
+                          height: 100,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8),
+                            color: AppColors.primarySwatch.withOpacity(0.1),
+                          ),
+                        ),
+                      Text("Nike shoe a501" , maxLines: 1, style: TextStyle(
+                        overflow: TextOverflow.ellipsis,
+                      ),),
+                      const Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text("\$90"),
+                          Wrap(
+                            children: [
+                              Icon(Icons.star_border, size: 18,color: Colors.amber,),
+                              Text("5.0"),
+                            ],
+                          ),
+                          Card(
+                            color: AppColors.primarySwatch,
+                            child: Padding(
+                              padding: EdgeInsets.all(3.0),
+                              child: Icon(Icons.favorite_border, size: 12, color: Colors.white,),
+                            ),
+                          )
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              )
             ],
           ),
         ),
