@@ -1,20 +1,53 @@
-import 'package:ecommerceapp/presentation/ui/screens/auth/complete_profile_screen.dart';
-import 'package:ecommerceapp/presentation/ui/utility/app_colors.dart';
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
 import '../../utility/image_assets.dart';
+import '../../utility/app_colors.dart';
+import 'complete_profile_screen.dart';
 
 class OTPVerificationScreen extends StatefulWidget {
-  const OTPVerificationScreen({super.key});
+  const OTPVerificationScreen({Key? key}) : super(key: key);
 
   @override
   State<OTPVerificationScreen> createState() => _OTPVerificationScreenState();
 }
 
 class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
+  int _timerSeconds = 30;
+  late Timer _timer;
+
+  @override
+  void initState() {
+    super.initState();
+    startTimer();
+  }
+
+  @override
+  void dispose() {
+    _timer.cancel();
+    super.dispose();
+  }
+
+  void startTimer() {
+    const oneSec = Duration(seconds: 1);
+    _timer = Timer.periodic(
+      oneSec,
+          (timer) {
+        setState(() {
+          if (_timerSeconds == 0) {
+            timer.cancel();
+          } else {
+            _timerSeconds--;
+          }
+        });
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,28 +61,29 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
                   height: 80,
                 ),
                 Center(
-                    child: SvgPicture.asset(
-                  ImagesAssets.craftyBayLogoSVG,
-                  width: 100,
-                )),
+                  child: SvgPicture.asset(
+                    ImagesAssets.craftyBayLogoSVG,
+                    width: 100,
+                  ),
+                ),
                 const SizedBox(
                   height: 16,
                 ),
                 Text(
                   "Enter Your OTP Code",
-                  style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                        fontSize: 28,
-                      ),
+                  style: Theme.of(context).textTheme.headline6?.copyWith(
+                    fontSize: 28,
+                  ),
                 ),
                 const SizedBox(
                   height: 5,
                 ),
                 Text(
                   "A 4 digit code has been sent",
-                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                        color: Colors.grey,
-                        fontSize: 16,
-                      ),
+                  style: Theme.of(context).textTheme.subtitle1?.copyWith(
+                    color: Colors.grey,
+                    fontSize: 16,
+                  ),
                 ),
                 const SizedBox(
                   height: 22,
@@ -74,15 +108,12 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
                   ),
                   animationDuration: Duration(milliseconds: 300),
                   enableActiveFill: true,
-                  onCompleted: (v) {
-          
-                  },
-                  onChanged: (value) {
-          
-                  },
+                  onCompleted: (v) {},
+                  onChanged: (value) {},
                   beforeTextPaste: (text) {
                     return true;
-                  }, appContext: context,
+                  },
+                  appContext: context,
                 ),
                 const SizedBox(
                   height: 16,
@@ -100,14 +131,14 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
                   height: 16,
                 ),
                 RichText(
-                  text: const TextSpan(
+                  text: TextSpan(
                     style: TextStyle(
                       color: Colors.grey,
                     ),
                     children: [
-                      TextSpan(text: "This code expire in "),
+                      TextSpan(text: "This code expires in "),
                       TextSpan(
-                        text: "120s",
+                        text: "$_timerSeconds s",
                         style: TextStyle(
                           color: AppColors.primarySwatch,
                           fontWeight: FontWeight.bold,
@@ -117,12 +148,8 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
                   ),
                 ),
                 TextButton(
-                  onPressed: () {},
-                  style: TextButton.styleFrom(
-                    foregroundColor: Colors.grey,
-                  ),
-                  child: const Text("Resend"),
-                ),
+                  onPressed: _timerSeconds == 0 ? () {} : null,
+                  child: Text(_timerSeconds == 0 ? "Resend" : "Resend in $_timerSeconds s"),),
               ],
             ),
           ),

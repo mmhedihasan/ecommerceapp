@@ -1,7 +1,10 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:ecommerceapp/presentation/ui/utility/app_colors.dart';
 import 'package:ecommerceapp/presentation/ui/utility/image_assets.dart';
+import 'package:ecommerceapp/presentation/ui/widgets/category_card.dart';
 import 'package:ecommerceapp/presentation/ui/widgets/circular_icon_button.dart';
+import 'package:ecommerceapp/presentation/ui/widgets/home/home_slider.dart';
+import 'package:ecommerceapp/presentation/ui/widgets/home/section_header.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -13,7 +16,8 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final ValueNotifier<int> _selectedSlider= ValueNotifier(0);
+  final ValueNotifier<int> _selectedSlider = ValueNotifier(0);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -72,49 +76,24 @@ class _HomeScreenState extends State<HomeScreen> {
               const SizedBox(
                 height: 16,
               ),
-              CarouselSlider(
-                options: CarouselOptions(
-                    height: 180.0,
-                    autoPlay: true,
-                    autoPlayInterval: const Duration(seconds: 4),
-                    onPageChanged: (int page, _) {
-                      _selectedSlider.value = page;
-                    },),
-                items: [1, 2, 3, 4, 5].map((i) {
-                  return Builder(
-                    builder: (BuildContext context) {
-                      return Container(
-                          width: MediaQuery.of(context).size.width,
-                          margin: const EdgeInsets.symmetric(horizontal: 5.0),
-                          decoration: const BoxDecoration(color: Colors.amber),
-                          child: Text(
-                            'text $i',
-                            style: const TextStyle(fontSize: 16.0),
-                          ),);
-                    },
-                  );
-                }).toList(),
+              const HomeSlider(),
+               SectionHeader(title: 'All Categories', onTap: () {  },),
+              const SizedBox(
+                height: 8,
               ),
-              const SizedBox(height: 16,),
-              ValueListenableBuilder(valueListenable: _selectedSlider, builder: (context, value, _) {
-                List<Widget>list = [];
-                for(int i=0; i<5; i++){
-                 list.add(Container(
-                    height: 15,
-                    width: 15,
-                    margin: const EdgeInsets.symmetric(horizontal: 4),
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Colors.grey),
-                      borderRadius: BorderRadius.circular(18),
-                      color: value == i ? AppColors.primarySwatch : null
-                    ),
-                  ),);
-                }
-                return Row(
-                  children: list,
-                );
-              },),
-
+              SizedBox(
+                height: 90,
+                child: ListView.builder(
+                  itemCount: 10,
+                  scrollDirection: Axis.horizontal,
+                  itemBuilder: (context, index){
+                  return const CategoryCard();
+                },),
+              ),
+              const SizedBox(
+                height: 16,
+              ),
+              SectionHeader(title: 'Popular', onTap: () {  },),
             ],
           ),
         ),
@@ -122,3 +101,7 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
+
+
+
+
