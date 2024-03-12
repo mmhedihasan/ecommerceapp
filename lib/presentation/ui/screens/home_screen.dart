@@ -77,23 +77,30 @@ class _HomeScreenState extends State<HomeScreen> {
                 height: 16,
               ),
               const HomeSlider(),
-               SectionHeader(title: 'All Categories', onTap: () {  },),
+              SectionHeader(
+                title: 'All Categories',
+                onTap: () {},
+              ),
               const SizedBox(
                 height: 8,
               ),
               SizedBox(
-                height: 90,
+                height: 110,
                 child: ListView.builder(
                   itemCount: 10,
                   scrollDirection: Axis.horizontal,
-                  itemBuilder: (context, index){
-                  return const CategoryCard();
-                },),
+                  itemBuilder: (context, index) {
+                    return const CategoryCard();
+                  },
+                ),
               ),
               const SizedBox(
                 height: 16,
               ),
-              SectionHeader(title: 'Popular', onTap: () {  },),
+              SectionHeader(
+                title: 'Popular',
+                onTap: () {},
+              ),
               Card(
                 shadowColor: AppColors.primarySwatch.withOpacity(0.1),
                 elevation: 4,
@@ -101,37 +108,64 @@ class _HomeScreenState extends State<HomeScreen> {
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: SizedBox(
-                  width: 100,
+                  width: 130,
                   child: Column(
                     children: [
-                        Container(
-                          height: 100,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8),
-                            color: AppColors.primarySwatch.withOpacity(0.1),
+                      Container(
+                        height: 100,
+                        decoration: BoxDecoration(
+                          color: AppColors.primarySwatch.withOpacity(0.1),
+                          borderRadius: const BorderRadius.only(
+                            topLeft: Radius.circular(8),
+                            topRight: Radius.circular(8),
                           ),
+                          image: const DecorationImage(
+                           image: AssetImage(
+                             ImagesAssets.craftyshoe,
+                          ),fit: BoxFit.contain),
                         ),
-                      Text("Nike shoe a501" , maxLines: 1, style: TextStyle(
-                        overflow: TextOverflow.ellipsis,
-                      ),),
-                      const Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text("\$90"),
-                          Wrap(
-                            children: [
-                              Icon(Icons.star_border, size: 18,color: Colors.amber,),
-                              Text("5.0"),
-                            ],
-                          ),
-                          Card(
-                            color: AppColors.primarySwatch,
-                            child: Padding(
-                              padding: EdgeInsets.all(3.0),
-                              child: Icon(Icons.favorite_border, size: 12, color: Colors.white,),
+                      ),
+                      const Padding(
+                        padding: EdgeInsets.all(8.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Nike shoe a501",
+                              maxLines: 1,
+                              style: TextStyle(
+                                overflow: TextOverflow.ellipsis,
+                              ),
                             ),
-                          )
-                        ],
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text("\$90"),
+                                Wrap(
+                                  children: [
+                                    Icon(
+                                      Icons.star_border,
+                                      size: 18,
+                                      color: Colors.amber,
+                                    ),
+                                    Text("5.0"),
+                                  ],
+                                ),
+                                Card(
+                                  color: AppColors.primarySwatch,
+                                  child: Padding(
+                                    padding: EdgeInsets.all(3.0),
+                                    child: Icon(
+                                      Icons.favorite_border,
+                                      size: 12,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
                     ],
                   ),
@@ -144,7 +178,3 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
-
-
-
-
