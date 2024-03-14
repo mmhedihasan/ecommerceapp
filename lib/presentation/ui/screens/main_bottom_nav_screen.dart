@@ -25,6 +25,7 @@ class _MainBottomNavScreenState extends State<MainBottomNavScreen> {
   @override
   Widget build(BuildContext context) {
     return  GetBuilder<MainBottomNavController>(
+        init: MainBottomNavController(),
       builder: (controller) {
         return Scaffold(
           body: _screens[controller.currentSelectedIndex],

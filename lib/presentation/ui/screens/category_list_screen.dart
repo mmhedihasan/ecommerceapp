@@ -1,5 +1,7 @@
+import 'package:ecommerceapp/presentation/state_holders/main_bottom_nav_controller.dart';
 import 'package:ecommerceapp/presentation/ui/widgets/category_card.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class CategoryListScreen extends StatefulWidget {
   const CategoryListScreen({super.key});
@@ -18,9 +20,10 @@ class _CategoryListScreenState extends State<CategoryListScreen> {
           color: Colors.black,
         ),),
         elevation: 4,
-        leading: const BackButton(
-          color: Colors.black,
-        ),
+        leading:  IconButton(
+            onPressed: (){
+              Get.find<MainBottomNavController>().backToHome();
+        }, icon: const Icon(Icons.arrow_back),color: Colors.black,),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16.0),
