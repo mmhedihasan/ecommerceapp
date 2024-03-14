@@ -1,3 +1,4 @@
+import 'package:ecommerceapp/presentation/ui/screens/Product_list_screen.dart';
 import 'package:ecommerceapp/presentation/ui/screens/category_list_screen.dart';
 import 'package:ecommerceapp/presentation/ui/utility/image_assets.dart';
 import 'package:ecommerceapp/presentation/ui/widgets/category_card.dart';
@@ -102,7 +103,9 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               SectionHeader(
                 title: 'Popular',
-                onTap: () {},
+                onTap: () {
+                  Get.to(const ProductListScreen());
+                },
               ),
               SizedBox(
                 height: 175,
@@ -117,7 +120,9 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               SectionHeader(
                 title: 'Special',
-                onTap: () {},
+                onTap: () {
+                  Get.to(const ProductListScreen());
+                },
               ),
               SizedBox(
                 height: 175,
@@ -132,7 +137,9 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               SectionHeader(
                 title: 'New',
-                onTap: () {},
+                onTap: () {
+                  Get.to(const ProductListScreen());
+                },
               ),
               SizedBox(
                 height: 175,
