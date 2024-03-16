@@ -1,3 +1,4 @@
+import 'package:ecommerceapp/presentation/state_holders/main_bottom_nav_controller.dart';
 import 'package:ecommerceapp/presentation/ui/screens/Product_list_screen.dart';
 import 'package:ecommerceapp/presentation/ui/screens/category_list_screen.dart';
 import 'package:ecommerceapp/presentation/ui/utility/image_assets.dart';
@@ -82,7 +83,7 @@ class _HomeScreenState extends State<HomeScreen> {
               SectionHeader(
                 title: 'All Categories',
                 onTap: () {
-                  Get.to(const CategoryListScreen());
+                  Get.find<MainBottomNavController>().changeScreen(1);
                 },
               ),
               const SizedBox(
