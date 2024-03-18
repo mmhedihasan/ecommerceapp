@@ -28,8 +28,14 @@ class ProductDetailsScreen extends StatelessWidget {
             ),
             Row(
               children: [
-                Text("Addider Shoe Black4050, Deatails shoe"),
-
+                const Expanded(child: Text("Adder Shoe Black4050, Black Edition", style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w700,
+                  letterSpacing: 0.5,
+                ),),),
+                CustomStepper(lowerLimit: 1, upperLimit: 10, stepValue: 1, value: 1, onChange: (newValue){
+                    print(newValue);
+                },),
               ],
             )
           ],
