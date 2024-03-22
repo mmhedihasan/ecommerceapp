@@ -1,5 +1,6 @@
 import 'package:ecommerceapp/application/state_holder_binder.dart';
 import 'package:ecommerceapp/presentation/state_holders/main_bottom_nav_controller.dart';
+import 'package:ecommerceapp/presentation/ui/screens/auth/email_verification_screen.dart';
 import 'package:ecommerceapp/presentation/ui/screens/splash_screen.dart';
 import 'package:ecommerceapp/presentation/ui/utility/app_colors.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +13,7 @@ class CraftyBay extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      home: const SplashScreen(),
+      home: const EmailVerificationScreen(),
         initialBinding: StateHolderBinder(),
         theme: ThemeData(
         primaryColor: AppColors.primarySwatch,
