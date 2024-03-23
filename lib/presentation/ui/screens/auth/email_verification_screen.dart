@@ -39,16 +39,17 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
                 Text(
                   "Welcome Back", // Enclosed in quotation marks
                   style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                    fontSize: 28,
-                  ),
+                        fontSize: 28,
+                      ),
                 ),
                 const SizedBox(height: 5),
                 Text(
-                  "Please Enter Your Email Address", // Enclosed in quotation marks
+                  "Please Enter Your Email Address",
+                  // Enclosed in quotation marks
                   style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                    color: Colors.grey,
-                    fontSize: 16,
-                  ),
+                        color: Colors.grey,
+                        fontSize: 16,
+                      ),
                 ),
                 const SizedBox(height: 22),
                 TextFormField(
@@ -96,9 +97,13 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
 
   Future<void> verifyEmail(EmailVerificationController controller) async {
     final response =
-    await controller.verifyEmail(_emailTEController.text.trim());
+        await controller.verifyEmail(_emailTEController.text.trim());
     if (response) {
-      Get.to(()=>  OTPVerificationScreen(email: _emailTEController.text.trim(),),);
+      Get.to(
+        () => OTPVerificationScreen(
+          email: _emailTEController.text.trim(),
+        ),
+      );
     } else {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(

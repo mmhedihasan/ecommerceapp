@@ -181,7 +181,7 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
-            content: Text("Email Verification Fails, Try again"),
+            content: Text("Otp Verification Fails, Try again"),
           ),
         );
       }

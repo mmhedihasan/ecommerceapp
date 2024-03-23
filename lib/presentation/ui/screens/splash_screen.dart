@@ -1,13 +1,10 @@
 import 'package:ecommerceapp/presentation/state_holders/auth_controller.dart';
 import 'package:ecommerceapp/presentation/ui/screens/auth/email_verification_screen.dart';
-import 'package:ecommerceapp/presentation/ui/screens/home_screen.dart';
 import 'package:ecommerceapp/presentation/ui/screens/main_bottom_nav_screen.dart';
 import 'package:ecommerceapp/presentation/ui/utility/image_assets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-
-
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -23,10 +20,15 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
     goToNextScreen();
   }
+
   Future<void> goToNextScreen() async {
     await AuthController.getAccessToken();
     Future.delayed(const Duration(seconds: 1)).then((value) {
-     Get.offAll(()=> AuthController.isLoggedIn ? const MainBottomNavScreen() : const MainBottomNavScreen());
+      Get.offAll(
+        () => AuthController.isLoggedIn
+            ? const MainBottomNavScreen()
+            : const EmailVerificationScreen(),
+      );
     });
   }
 
@@ -39,7 +41,7 @@ class _SplashScreenState extends State<SplashScreen> {
           const Spacer(),
           Center(
               child: SvgPicture.asset(
-             ImagesAssets.craftyBayLogoSVG,
+            ImagesAssets.craftyBayLogoSVG,
             width: 100,
           )),
           const Spacer(),
