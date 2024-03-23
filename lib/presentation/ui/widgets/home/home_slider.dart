@@ -1,9 +1,11 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:ecommerceapp/data/models/slider_data.dart';
 import 'package:ecommerceapp/presentation/ui/utility/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class HomeSlider extends StatefulWidget {
-  const HomeSlider({super.key});
+  final List<SliderData> sliders;
+  const HomeSlider({super.key, required this.sliders});
 
   @override
   State<HomeSlider> createState() => _HomeSliderState();
@@ -25,7 +27,7 @@ class _HomeSliderState extends State<HomeSlider> {
               _selectedSlider.value = page;
             },
           ),
-          items: [1, 2, 3, 4, 5].map((i) {
+          items: widget.sliders.map((sliderData) {
             return Builder(
               builder: (BuildContext context) {
                 return Container(
@@ -33,10 +35,7 @@ class _HomeSliderState extends State<HomeSlider> {
                   margin: const EdgeInsets.symmetric(horizontal: 5.0),
                   decoration: const BoxDecoration(color: Colors.amber),
                   alignment: Alignment.center,
-                  child: Text(
-                    'text $i',
-                    style: const TextStyle(fontSize: 16.0),
-                  ),
+                  child: Image.network(sliderData.image ?? ""),
                 );
               },
             );
@@ -49,7 +48,7 @@ class _HomeSliderState extends State<HomeSlider> {
           valueListenable: _selectedSlider,
           builder: (context, value, _) {
             List<Widget> list = [];
-            for (int i = 0; i < 5; i++) {
+            for (int i = 0; i < widget.sliders.length; i++) {
               list.add(
                 Container(
                   height: 10,
