@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 
 class HomeSlider extends StatefulWidget {
   final List<SliderData> sliders;
+
   const HomeSlider({super.key, required this.sliders});
 
   @override
@@ -33,9 +34,23 @@ class _HomeSliderState extends State<HomeSlider> {
                 return Container(
                   width: MediaQuery.of(context).size.width,
                   margin: const EdgeInsets.symmetric(horizontal: 5.0),
-                  decoration: const BoxDecoration(color: Colors.amber),
+                  decoration:  BoxDecoration(color: AppColors.primarySwatch.withOpacity(0.8), borderRadius: BorderRadius.circular(8)),
                   alignment: Alignment.center,
-                  child: Image.network(sliderData.image ?? ""),
+                  child: Stack(
+                    children: [
+                      Image.network(sliderData.image ?? ""),
+                      Positioned(
+                        bottom: 0,
+                        child: Text(
+                          sliderData.title ?? "",
+                          style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 18,
+                              fontWeight: FontWeight.w600),
+                        ),
+                      ),
+                    ],
+                  ),
                 );
               },
             );
