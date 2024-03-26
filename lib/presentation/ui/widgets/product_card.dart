@@ -1,19 +1,22 @@
+import 'package:ecommerceapp/data/models/product.dart';
 import 'package:ecommerceapp/presentation/ui/screens/product_details_screen.dart';
 import 'package:ecommerceapp/presentation/ui/utility/app_colors.dart';
-import 'package:ecommerceapp/presentation/ui/utility/image_assets.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class ProductCard extends StatelessWidget {
   const ProductCard({
     super.key,
+    required this.product,
   });
+
+  final Product product;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       borderRadius: BorderRadius.circular(8),
-      onTap: (){
+      onTap: () {
         Get.to(const ProductDetailsScreen());
       },
       child: Card(
@@ -34,19 +37,18 @@ class ProductCard extends StatelessWidget {
                     topLeft: Radius.circular(8),
                     topRight: Radius.circular(8),
                   ),
-                  image: const DecorationImage(
-                      image: AssetImage(
-                        ImagesAssets.craftyshoe,
-                      ),fit: BoxFit.contain),
+                  image:  DecorationImage(
+                      image: NetworkImage(product.image ?? ""),
+                      fit: BoxFit.contain),
                 ),
               ),
-              const Padding(
+              Padding(
                 padding: EdgeInsets.all(8.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Nike shoe a501205",
+                      product.title ?? "",
                       maxLines: 1,
                       style: TextStyle(
                         overflow: TextOverflow.ellipsis,
@@ -55,14 +57,19 @@ class ProductCard extends StatelessWidget {
                         color: Colors.blueGrey,
                       ),
                     ),
-                    SizedBox(height: 2,),
+                    SizedBox(
+                      height: 2,
+                    ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text("\$90", style: TextStyle(
-                          fontWeight: FontWeight.w600,
-                          color: AppColors.primarySwatch,
-                        ),),
+                        Text(
+                          '\$${product.price ?? 0.0}',
+                          style: TextStyle(
+                            fontWeight: FontWeight.w600,
+                            color: AppColors.primarySwatch,
+                          ),
+                        ),
                         Wrap(
                           crossAxisAlignment: WrapCrossAlignment.center,
                           children: [
@@ -71,11 +78,14 @@ class ProductCard extends StatelessWidget {
                               size: 18,
                               color: Colors.amber,
                             ),
-                            Text("4.5", style: TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w500,
-                              color: Colors.blueGrey,
-                            ),),
+                            Text(
+                              "${product.star ?? 0.0}",
+                              style: TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.w500,
+                                color: Colors.blueGrey,
+                              ),
+                            ),
                           ],
                         ),
                         Card(

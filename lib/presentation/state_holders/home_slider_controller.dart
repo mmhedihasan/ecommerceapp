@@ -6,12 +6,12 @@ import 'package:get/get.dart';
 
 class HomeSlidersController extends GetxController {
   bool _getHomeSlidersInProgress = false;
-  SliderModel _sliderModel = SliderModel();
+  CategoryModel _sliderModel = CategoryModel();
   String _message = "";
 
   bool get getHomeSlidersInProgress => _getHomeSlidersInProgress;
 
-  SliderModel get sliderModel => _sliderModel;
+  CategoryModel get sliderModel => _sliderModel;
 
   String get message => _message;
 
@@ -22,7 +22,7 @@ class HomeSlidersController extends GetxController {
         await NetworkCaller().getRequest(Urls.getHomeSliders);
     _getHomeSlidersInProgress = false;
     if (response.isSuccess) {
-      _sliderModel = SliderModel.fromJson(response.responseJson ?? {});
+      _sliderModel = CategoryModel.fromJson(response.responseJson ?? {});
       update();
       return true;
     } else {

@@ -1,7 +1,8 @@
+import 'package:ecommerceapp/presentation/state_holders/category_controller.dart';
 import 'package:ecommerceapp/presentation/state_holders/home_slider_controller.dart';
 import 'package:ecommerceapp/presentation/state_holders/main_bottom_nav_controller.dart';
+import 'package:ecommerceapp/presentation/state_holders/product_controller.dart';
 import 'package:ecommerceapp/presentation/ui/screens/Product_list_screen.dart';
-import 'package:ecommerceapp/presentation/ui/screens/category_list_screen.dart';
 import 'package:ecommerceapp/presentation/ui/utility/image_assets.dart';
 import 'package:ecommerceapp/presentation/ui/widgets/category_card.dart';
 import 'package:ecommerceapp/presentation/ui/widgets/circular_icon_button.dart';
@@ -105,13 +106,24 @@ class _HomeScreenState extends State<HomeScreen> {
                 height: 8,
               ),
               SizedBox(
-                height: 110,
-                child: ListView.builder(
-                  itemCount: 10,
-                  scrollDirection: Axis.horizontal,
-                  itemBuilder: (context, index) {
-                    return const CategoryCard();
-                  },
+                height: 100,
+                child: GetBuilder<CategoryController>(
+                  builder: (categoryController) {
+                    if(categoryController.getCategoriesInProgress) {
+                      return const Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    }
+                    return ListView.builder(
+                      itemCount: categoryController.categoryModel.data?.length ?? 0,
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: (context, index) {
+                        return CategoryCard(
+                        categoryData: categoryController.categoryModel.data![index],
+                        );
+                      },
+                    );
+                  }
                 ),
               ),
               const SizedBox(
@@ -125,12 +137,23 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               SizedBox(
                 height: 175,
-                child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: 20,
-                    itemBuilder: (context, index){
-                  return const ProductCard();
-                } ),
+                child: GetBuilder<ProductController>(
+                  builder: (productController) {
+                    if(productController.getPopularProductsInProgress) {
+                      return const Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    }
+                    return ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        itemCount: productController.popularProductModel.data?.length ?? 0,
+                        itemBuilder: (context, index){
+                      return  ProductCard(
+                       product : productController.popularProductModel.data![index],
+                      );
+                    } );
+                  }
+                ),
               ), const SizedBox(
                 height: 16,
               ),
@@ -146,7 +169,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     scrollDirection: Axis.horizontal,
                     itemCount: 20,
                     itemBuilder: (context, index){
-                  return const ProductCard();
+                  // return const ProductCard();
                 } ),
               ), const SizedBox(
                 height: 16,
@@ -163,7 +186,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     scrollDirection: Axis.horizontal,
                     itemCount: 20,
                     itemBuilder: (context, index){
-                  return const ProductCard();
+                  // return const ProductCard();
                 } ),
               ),
 

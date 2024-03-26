@@ -1,17 +1,17 @@
-import 'package:ecommerceapp/data/models/slider_data.dart';
+import 'package:ecommerceapp/data/models/product.dart';
 
-class CategoryModel {
+class ProductModel {
   String? msg;
-  List<SliderData>? data;
+  List<Product>? data;
 
-  CategoryModel({this.msg, this.data});
+  ProductModel({this.msg, this.data});
 
-  CategoryModel.fromJson(Map<String, dynamic> json) {
+  ProductModel.fromJson(Map<String, dynamic> json) {
     msg = json['msg'];
     if (json['data'] != null) {
-      data = <SliderData>[];
+      data = <Product>[];
       json['data'].forEach((v) {
-        data!.add(SliderData.fromJson(v));
+        data!.add(Product.fromJson(v));
       });
     }
   }
@@ -25,4 +25,8 @@ class CategoryModel {
     return data;
   }
 }
+
+
+
+
 
