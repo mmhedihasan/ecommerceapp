@@ -4,7 +4,7 @@ import 'package:ecommerceapp/data/services/network_controller.dart';
 import 'package:ecommerceapp/data/utility/urls.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 
-class ProductController extends GetxController {
+class PopularProductController extends GetxController {
   bool _getPopularProductsInProgress = false;
   ProductModel _popularProductModel = ProductModel();
   String _errormessage = "";

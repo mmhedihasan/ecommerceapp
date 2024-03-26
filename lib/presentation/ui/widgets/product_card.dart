@@ -17,7 +17,7 @@ class ProductCard extends StatelessWidget {
     return InkWell(
       borderRadius: BorderRadius.circular(8),
       onTap: () {
-        Get.to(const ProductDetailsScreen());
+        Get.to( ProductDetailsScreen(productId: product.id!,),);
       },
       child: Card(
         shadowColor: AppColors.primarySwatch.withOpacity(0.1),
@@ -43,21 +43,21 @@ class ProductCard extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(8.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
                       product.title ?? "",
                       maxLines: 1,
-                      style: TextStyle(
+                      style: const TextStyle(
                         overflow: TextOverflow.ellipsis,
                         fontSize: 14,
                         fontWeight: FontWeight.w500,
                         color: Colors.blueGrey,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 2,
                     ),
                     Row(
@@ -65,7 +65,7 @@ class ProductCard extends StatelessWidget {
                       children: [
                         Text(
                           '\$${product.price ?? 0.0}',
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontWeight: FontWeight.w600,
                             color: AppColors.primarySwatch,
                           ),
@@ -73,14 +73,14 @@ class ProductCard extends StatelessWidget {
                         Wrap(
                           crossAxisAlignment: WrapCrossAlignment.center,
                           children: [
-                            Icon(
+                            const Icon(
                               Icons.star,
                               size: 18,
                               color: Colors.amber,
                             ),
                             Text(
                               "${product.star ?? 0.0}",
-                              style: TextStyle(
+                              style: const TextStyle(
                                 fontSize: 14,
                                 fontWeight: FontWeight.w500,
                                 color: Colors.blueGrey,
@@ -88,7 +88,7 @@ class ProductCard extends StatelessWidget {
                             ),
                           ],
                         ),
-                        Card(
+                        const Card(
                           color: AppColors.primarySwatch,
                           child: Padding(
                             padding: EdgeInsets.all(3.0),
